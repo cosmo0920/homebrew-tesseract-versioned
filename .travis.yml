@@ -1,0 +1,23 @@
+language: objective-c
+matrix:
+  include:
+    - env: OSX=10.11 HOMEBREW_RUBY=2.0.0
+      os: osx
+      osx_image: xcode7.2
+      rvm: system
+    - env: OSX=10.10 HOMEBREW_RUBY=2.0.0
+      os: osx
+      osx_image: xcode7.1
+      rvm: system
+    - env: OSX=10.9 HOMEBREW_RUBY=1.8.7
+      os: osx
+      osx_image: beta-xcode6.2
+      rvm: system
+install:
+  - export HOMEBREW_DEVELOPER="1"
+  - brew update
+  - brew tap cosmo0920/tesseract-versioned
+script:
+  - brew install cosmo0920/tesseract-versioned/tesseract302
+  - brew uninstall cosmo0920/tesseract-versioned/tesseract302
+  - brew install cosmo0920/tesseract-versioned/tesseract302 --with-all-languages
